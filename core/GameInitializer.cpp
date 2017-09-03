@@ -4,6 +4,6 @@
 #include "GameInitializer.h"
 
 bool GameInitializer::handle_init_input() {
-    return false;
+    return true;
 }
 

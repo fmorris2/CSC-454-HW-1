@@ -8,8 +8,6 @@
 #include "core/GameInitializer.h"
 #include "core/Game.h"
 
-using namespace std;
-
 int main() {
     GameInitializer game_initializer;
     if(game_initializer.handle_init_input()) {
@@ -18,6 +16,6 @@ int main() {
         return EXIT_SUCCESS;
     }
 
-    cout << "Failed to initialize game." << endl;
+    std::cout << "Failed to initialize game." << std::endl;
     return EXIT_FAILURE;
 }
