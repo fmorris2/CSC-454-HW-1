@@ -3,10 +3,21 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
+#include "core/GameInitializer.h"
+#include "core/Game.h"
+
 using namespace std;
 
 int main() {
-    cout << "Hello world" << endl;
-}
+    GameInitializer game_initializer;
+    if(game_initializer.handle_init_input()) {
+        Game game;
+        game.cycle();
+        return EXIT_SUCCESS;
+    }
 
+    cout << "Failed to initialize game." << endl;
+    return EXIT_FAILURE;
+}
