@@ -9,7 +9,9 @@
 class GameData {
 public:
     Room* rooms;
+    int num_rooms;
     Creature* creatures;
+    int num_creatures;
     GameData();
     void cleanup();
 };

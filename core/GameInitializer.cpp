@@ -22,6 +22,8 @@ int GameInitializer::get_upper_bounded_value_from_user(int MAX_VAL, std::string 
 bool GameInitializer::create_rooms(GameData *data, int size) {
     if(size > 0) {
         data->rooms = new Room[size];
+        data->num_rooms = size;
+        get_room_details_from_user(data);
         return true;
     }
 
@@ -29,14 +31,27 @@ bool GameInitializer::create_rooms(GameData *data, int size) {
     return false;
 }
 
+bool GameInitializer::get_room_details_from_user(GameData *data) {
+    for(int i = 0; i < data->num_rooms; i++) {
+        
+    }
+}
+
 bool GameInitializer::create_creatures(GameData *data, int size) {
     if(size > 0) {
         data->creatures = new Creature[size];
+        data->num_creatures = size;
         return true;
     }
 
     std::cout << "# of creatures must be 0 < n <= " << MAX_CREATURES << std::endl;
     return false;
+}
+
+bool GameInitializer::get_creature_details_from_user(GameData *data) {
+    for(int i = 0; i < data->num_creatures; i++) {
+
+    }
 }
 
 void GameInitializer::ensure_max_val(int max_value, int *value_to_check) {

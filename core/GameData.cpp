@@ -7,6 +7,8 @@
 GameData::GameData() {
     creatures = NULL;
     rooms = NULL;
+    num_rooms = -1;
+    num_creatures = -1;
 }
 
 void GameData::cleanup() {
