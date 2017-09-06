@@ -5,4 +5,8 @@
 #ifndef CSC_454_HW_1_ROOM_H
 #define CSC_454_HW_1_ROOM_H
 
+class Room {
+
+};
+
 #endif //CSC_454_HW_1_ROOM_H

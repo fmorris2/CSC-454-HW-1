@@ -14,10 +14,9 @@ void Game::cycle() {
         user_input = get_user_input();
         process_user_input(user_input);
     } while (user_input.compare(EXIT_VALUE) != 0);
-
 }
 
-void Game::process_user_input(string command) {
+void Game::process_user_input(std::string command) {
 
 }
 

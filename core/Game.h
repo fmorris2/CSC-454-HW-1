@@ -11,7 +11,7 @@ public:
     void cycle();
 private:
     std::string get_user_input();
-    void process_user_input();
+    void process_user_input(std::string command);
 };
 
 #endif //CSC_454_HW_1_GAME_H
