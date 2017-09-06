@@ -7,22 +7,21 @@
 const int MAX_ROOMS = 100, MAX_CREATURES = 100;
 
 bool GameInitializer::handle_init_input(GameData* data) {
-    return create_rooms(data)
-            && create_creatures(data);
+    return create_rooms(data, get_upper_bounded_value_from_user(MAX_ROOMS, "rooms"))
+            && create_creatures(data, get_upper_bounded_value_from_user(MAX_CREATURES, "creatures"));
 }
 
-int GameInitializer::get_num_rooms_from_user() {
-    int num_rooms = -1;
-    std::cout << "Enter # rooms: ";
-    std::cin >> num_rooms;
-    ensure_max_val(MAX_ROOMS, &num_rooms);
-    return num_rooms;
+int GameInitializer::get_upper_bounded_value_from_user(int MAX_VAL, std::string name_of_value) {
+    int user_input = -1;
+    std::cout << "Enter # " << name_of_value << ": ";
+    std::cin >> user_input;
+    ensure_max_val(MAX_VAL, &user_input);
+    return user_input;
 }
 
-bool GameInitializer::create_rooms(GameData *data) {
-    int num_rooms = get_num_rooms_from_user();
-    if(num_rooms > 0) {
-        data->rooms = new Room[num_rooms];
+bool GameInitializer::create_rooms(GameData *data, int size) {
+    if(size > 0) {
+        data->rooms = new Room[size];
         return true;
     }
 
@@ -30,18 +29,9 @@ bool GameInitializer::create_rooms(GameData *data) {
     return false;
 }
 
-int GameInitializer::get_num_creatures_from_user() {
-    int num_creatures = -1;
-    std::cout << "Enter # creatures: ";
-    std::cin >> num_creatures;
-    ensure_max_val(MAX_CREATURES, &num_creatures);
-    return num_creatures;
-}
-
-bool GameInitializer::create_creatures(GameData *data) {
-    int num_creatures = get_num_creatures_from_user();
-    if(num_creatures > 0) {
-        data->creatures = new Creature[num_creatures];
+bool GameInitializer::create_creatures(GameData *data, int size) {
+    if(size > 0) {
+        data->creatures = new Creature[size];
         return true;
     }
 

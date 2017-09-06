@@ -3,6 +3,7 @@
 //
 
 #include "GameData.h"
+#include <string>
 #ifndef CSC_454_HW_1_GAMEINITIALIZER_H
 #define CSC_454_HW_1_GAMEINITIALIZER_H
 
@@ -10,10 +11,9 @@ class GameInitializer {
 public:
     bool handle_init_input(GameData* data);
 private:
-    bool create_rooms(GameData* data);
-    int get_num_rooms_from_user();
-    bool create_creatures(GameData* data);
-    int get_num_creatures_from_user();
+    bool create_rooms(GameData* data, int size);
+    bool create_creatures(GameData* data, int size);
+    int get_upper_bounded_value_from_user(int MAX_VAL, std::string name_of_value);
     void ensure_max_val(int max_value, int* value_to_check);
 
 };
