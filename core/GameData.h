@@ -4,15 +4,18 @@
 
 #include "../creature/Creature.h"
 #include "../room/Room.h"
+#include <vector>
 #ifndef CSC_454_HW_1_GAMEDATA_H
 #define CSC_454_HW_1_GAMEDATA_H
 class GameData {
 public:
-    Room* rooms;
+    std::vector<Room*> rooms;
     int num_rooms;
-    Creature* creatures;
+    std::vector<Creature*> creatures;
     int num_creatures;
     GameData();
     void cleanup();
+    std::vector<Creature*> get_creatures_in_room(int room);
+    Creature* find_creature(int id);
 };
 #endif //CSC_454_HW_1_GAMEDATA_H

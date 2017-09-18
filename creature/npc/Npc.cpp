@@ -3,3 +3,8 @@
 //
 
 #include "Npc.h"
+#include "../CreatureType.cpp"
+
+Npc::Npc(int id, int location) : Creature(id, location) {
+    type = (int)CreatureType::NPC;
+}

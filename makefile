@@ -1,2 +1,2 @@
-main: core/GameData.cpp core/GameInitializer.cpp core/Game.cpp main.cpp
-	g++ -o main.exe core/GameData.cpp core/GameInitializer.cpp core/Game.cpp main.cpp
+main: core/GameData.cpp core/GameInitializer.cpp core/Game.cpp room/Room.cpp creature/Creature.cpp creature/pc/PlayerCharacter.cpp creature/npc/Npc.cpp creature/animal/Animal.cpp utils/StringUtils.cpp core/CommandHandler.cpp main.cpp
+	g++ -std=c++11 -o main.exe core/GameData.cpp core/GameInitializer.cpp core/Game.cpp room/Room.cpp creature/Creature.cpp creature/pc/PlayerCharacter.cpp creature/npc/Npc.cpp creature/animal/Animal.cpp utils/StringUtils.cpp core/CommandHandler.cpp main.cpp
