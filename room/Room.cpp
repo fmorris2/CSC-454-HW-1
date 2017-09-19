@@ -10,6 +10,7 @@
 #include <string>
 
 const std::string STATES[] = {"DIRTY", "HALF_DIRTY", "CLEAN"};
+const int MAX_CREATURES = 10;
 
 Room::Room(int id, int state, int north, int south, int east, int west) {
     this->id = id;

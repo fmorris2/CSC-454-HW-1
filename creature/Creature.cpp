@@ -30,4 +30,4 @@ std::string Creature::get_angry_action() {
     return angry_action;
 }
 
-Creature::~Creature() {std::cout << "Destructor";}
+Creature::~Creature() {}

@@ -11,13 +11,15 @@ class Creature {
 public:
     Creature(int id, int location);
     Creature();
-    virtual ~Creature();
+
     int get_id();
     int location;
     bool forced_action;
     std::string get_type();
     std::string get_happy_action();
     std::string get_angry_action();
+
+    virtual ~Creature();
 protected:
     int id;
     int type;

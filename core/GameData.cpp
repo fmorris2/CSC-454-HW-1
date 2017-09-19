@@ -11,11 +11,17 @@ GameData::GameData() {
 
 void GameData::cleanup() {
     if(!rooms.empty()) {
+        for(Room* room : rooms) {
+            delete(room);
+        }
         rooms.clear();
         rooms.resize(0);
     }
 
     if(!creatures.empty()) {
+        for(Creature* creature : creatures) {
+            delete(creature);
+        }
         creatures.clear();
         creatures.resize(0);
     }

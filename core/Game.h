@@ -16,8 +16,9 @@ public:
 private:
     std::vector<std::string> get_user_input_tokens();
     CommandHandler command_handler;
-    bool is_victorious(PlayerCharacter* pc);
-    bool is_defeated(PlayerCharacter* pc);
+    GameData* game_data;
+    bool is_victorious();
+    bool is_defeated();
 };
 
 #endif //CSC_454_HW_1_GAME_H

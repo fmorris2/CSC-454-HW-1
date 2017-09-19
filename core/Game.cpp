@@ -13,20 +13,19 @@ const char COMMAND_DELIMITER = ':';
 
 Game::Game(GameData *game_data) {
     this->command_handler = CommandHandler(game_data);
+    this->game_data = game_data;
 }
 
 void Game::cycle() {
     std::vector<std::string> user_input_tokens;
-    PlayerCharacter* pc;
     do {
         user_input_tokens = get_user_input_tokens();
         command_handler.handle(user_input_tokens);
-        pc = command_handler.find_pc();
-    } while (user_input_tokens[0].compare(EXIT_VALUE) != 0 && !is_victorious(pc) && !is_defeated(pc));
+    } while (user_input_tokens[0].compare(EXIT_VALUE) != 0 && !is_victorious() && !is_defeated());
 }
 
-bool Game::is_victorious(PlayerCharacter *pc) {
-    if(pc->respect > MAX_RESPECT) {
+bool Game::is_victorious() {
+    if(game_data->pc->respect > MAX_RESPECT) {
         std::cout << "You are victorious!" << std::endl;
         return true;
     }
@@ -34,8 +33,8 @@ bool Game::is_victorious(PlayerCharacter *pc) {
     return false;
 }
 
-bool Game::is_defeated(PlayerCharacter *pc) {
-    if(pc->respect <= MIN_RESPECT) {
+bool Game::is_defeated() {
+    if(game_data->pc->respect <= MIN_RESPECT) {
         std::cout << "You have been defeated." << std::endl;
         return true;
     }

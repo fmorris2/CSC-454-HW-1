@@ -7,9 +7,12 @@
 
 class Room {
 public:
-    const int MAX_CREATURES = 10;
     Room(int id, int state, int north, int south, int east, int west);
     Room();
+
+    void print_neighbors();
+    void print_state();
+
     void set_state(int state);
     int get_state();
     int get_north();
@@ -17,8 +20,7 @@ public:
     int get_east();
     int get_west();
     int get_id();
-    void print_neighbors();
-    void print_state();
+
 private:
     int north, south, east, west, state, id;
 };

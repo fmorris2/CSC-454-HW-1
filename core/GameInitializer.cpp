@@ -60,7 +60,11 @@ bool GameInitializer::get_creature_details_from_user(GameData *data) {
         for(int param_num = 0; param_num < NUM_CREATURE_PARAMS; param_num++) {
             std::cin >> params[param_num];
         }
-        data->creatures.push_back(CreatureFactory::create_creature(creature_num, params[0], params[1]));
+        Creature* creature = CreatureFactory::create_creature(creature_num, params[0], params[1]);
+        if(params[0] == (int)CreatureType::PC) {
+            data->pc = (PlayerCharacter*)creature;
+        }
+        data->creatures.push_back(creature);
     }
 }
 

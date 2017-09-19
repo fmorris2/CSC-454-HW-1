@@ -22,7 +22,7 @@ void CommandHandler::handle(std::vector<std::string> tokens) {
         return;
 
     std::string command = tokens[0];
-    Creature* target = find_pc();
+    Creature* target = game_data->pc;
     if(tokens.size() > 1) { //there is a target
         command = tokens[1];
         target = game_data->find_creature(std::stoi(tokens[0]));
@@ -168,9 +168,8 @@ void CommandHandler::happy_action(Creature *creature) {
     int times = creature->forced_action ? 3 : 1;
     for(int i = 0; i < times; i++) {
         std::cout << "Creature " << creature->get_id() << ": " << creature->get_happy_action() << " - ";
-        PlayerCharacter* pc = find_pc();
-        find_pc()->respect += 1;
-        std::cout << "Respect is now " << pc->respect << std::endl;
+        game_data->pc->respect += 1;
+        std::cout << "Respect is now " << game_data->pc->respect << std::endl;
     }
     creature->forced_action = false;
  }
@@ -179,9 +178,8 @@ void CommandHandler::angry_action(Creature *creature) {
     int times = creature->forced_action ? 3 : 1;
     for(int i = 0; i < times; i++) {
         std::cout << "Creature " << creature->get_id() << ": " << creature->get_angry_action() << " - ";
-        PlayerCharacter* pc = find_pc();
-        pc->respect -= 1;
-        std::cout << "Respect is now " << pc->respect << std::endl;
+        game_data->pc->respect -= 1;
+        std::cout << "Respect is now " << game_data->pc->respect << std::endl;
     }
     creature->forced_action = false;
 }
@@ -208,13 +206,5 @@ void CommandHandler::print_creatures(std::vector<Creature*> creatures) {
     std::cout << "Occupants: (" << creatures.size() << ")" << std::endl;
     for(Creature *creature : creatures) {
         std::cout << "\t" << creature->get_type() << " " << creature->get_id() << std::endl;
-    }
-}
-
-PlayerCharacter* CommandHandler::find_pc() {
-    for(Creature* creature : game_data->creatures) {
-        if(dynamic_cast<PlayerCharacter*>(creature)) {
-            return (PlayerCharacter*)creature;
-        }
     }
 }
