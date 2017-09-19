@@ -17,5 +17,6 @@ public:
     void cleanup();
     std::vector<Creature*> get_creatures_in_room(int room);
     Creature* find_creature(int id);
+    int find_creature_index(int creature_id);
 };
 #endif //CSC_454_HW_1_GAMEDATA_H

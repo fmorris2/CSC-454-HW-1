@@ -31,6 +31,16 @@ Creature* GameData::find_creature(int id) {
     return NULL;
 }
 
+int GameData::find_creature_index(int creature_id) {
+    for(int i = 0; i < creatures.size(); i++) {
+        if(creatures[i]->get_id() == creature_id) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 std::vector<Creature*> GameData::get_creatures_in_room(int room) {
     std::vector<Creature*> creatures_in_room;
     for(Creature* creature : creatures) {

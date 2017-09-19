@@ -28,13 +28,19 @@ void Game::cycle() {
 bool Game::is_victorious(PlayerCharacter *pc) {
     if(pc->respect > MAX_RESPECT) {
         std::cout << "You are victorious!" << std::endl;
+        return true;
     }
+
+    return false;
 }
 
 bool Game::is_defeated(PlayerCharacter *pc) {
     if(pc->respect <= MIN_RESPECT) {
         std::cout << "You have been defeated." << std::endl;
+        return true;
     }
+
+    return false;
 }
 
 std::vector<std::string> Game::get_user_input_tokens() {

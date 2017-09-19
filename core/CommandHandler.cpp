@@ -32,15 +32,16 @@ void CommandHandler::handle(std::vector<std::string> tokens) {
 }
 
 void CommandHandler::execute_command(std::string command, Creature *target) {
-    target->forced_action = true;
     Room* room = game_data->rooms[target->location];
     if(command.compare("look") == 0) {
         look(target);
     }
     else if(command.compare("clean") == 0) {
+        target->forced_action = true;
         clean(target);
     }
     else if(command.compare("dirty") == 0) {
+        target->forced_action = true;
         dirty(target);
     }
     else if(command.compare("north") == 0) {
@@ -111,7 +112,6 @@ void CommandHandler::handle_room_state_change(Room *room, bool clean) {
                 creature_escape_room(creature);
             }
         }
-        creature->forced_action = false;
     }
 }
 
@@ -155,7 +155,7 @@ void CommandHandler::creature_fix_room(Creature *creature) {
 void CommandHandler::creature_drill_hole(Creature *creature) {
     std::cout << "Creature " << creature->get_id() << " drills a hole in the ceiling and crawls out through the roof." << std::endl;
     int room = creature->location;
-    game_data->creatures.erase(game_data->creatures.begin() + creature->get_id());
+    game_data->creatures.erase(game_data->creatures.begin() + game_data->find_creature_index(creature->get_id()));
     std::vector<Creature*> creatures_in_room = game_data->get_creatures_in_room(room);
     for(Creature* c : creatures_in_room) {
         if(!dynamic_cast<PlayerCharacter*>(c)) {
@@ -165,33 +165,25 @@ void CommandHandler::creature_drill_hole(Creature *creature) {
 }
 
 void CommandHandler::happy_action(Creature *creature) {
-    std::string action = "smile";
-    if(dynamic_cast<Animal*>(creature)) {
-        action = "lick face";
-    }
-
     int times = creature->forced_action ? 3 : 1;
     for(int i = 0; i < times; i++) {
-        std::cout << "Creature " << creature->get_id() << ": " << action << std::endl;
+        std::cout << "Creature " << creature->get_id() << ": " << creature->get_happy_action() << " - ";
         PlayerCharacter* pc = find_pc();
         find_pc()->respect += 1;
         std::cout << "Respect is now " << pc->respect << std::endl;
     }
+    creature->forced_action = false;
  }
 
 void CommandHandler::angry_action(Creature *creature) {
-    std::string action = "grumble";
-    if(dynamic_cast<Animal*>(creature)) {
-        action = "growl";
-    }
-
     int times = creature->forced_action ? 3 : 1;
     for(int i = 0; i < times; i++) {
-        std::cout << "Creature " << creature->get_id() << ": " << action << std::endl;
+        std::cout << "Creature " << creature->get_id() << ": " << creature->get_angry_action() << " - ";
         PlayerCharacter* pc = find_pc();
         pc->respect -= 1;
         std::cout << "Respect is now " << pc->respect << std::endl;
     }
+    creature->forced_action = false;
 }
 
 bool CommandHandler::creature_can_be_in_room(Creature *creature, Room *room) {
@@ -213,7 +205,7 @@ void CommandHandler::look(Creature *target) {
 }
 
 void CommandHandler::print_creatures(std::vector<Creature*> creatures) {
-    std::cout << "Occupants: " << std::endl;
+    std::cout << "Occupants: (" << creatures.size() << ")" << std::endl;
     for(Creature *creature : creatures) {
         std::cout << "\t" << creature->get_type() << " " << creature->get_id() << std::endl;
     }

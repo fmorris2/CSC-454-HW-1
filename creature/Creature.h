@@ -16,9 +16,12 @@ public:
     int location;
     bool forced_action;
     std::string get_type();
+    std::string get_happy_action();
+    std::string get_angry_action();
 protected:
     int id;
     int type;
+    std::string happy_action, angry_action;
 };
 
 #endif //CSC_454_HW_1_CREATURE_H
