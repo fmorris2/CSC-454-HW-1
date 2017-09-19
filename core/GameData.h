@@ -10,10 +10,7 @@
 #define CSC_454_HW_1_GAMEDATA_H
 class GameData {
 public:
-    int num_rooms;
     std::vector<Room*> rooms;
-
-    int num_creatures;
     std::vector<Creature*> creatures;
     PlayerCharacter* pc;
 

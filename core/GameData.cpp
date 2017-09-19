@@ -4,10 +4,7 @@
 #include <iostream>
 #include "GameData.h"
 
-GameData::GameData() {
-    num_rooms = -1;
-    num_creatures = 1;
-}
+GameData::GameData() {}
 
 void GameData::cleanup() {
     if(!rooms.empty()) {

@@ -24,8 +24,7 @@ int GameInitializer::get_upper_bounded_value_from_user(int MAX_VAL, std::string 
 
 bool GameInitializer::create_rooms(GameData *data, int size) {
     if(size > 0) {
-        data->num_rooms = size;
-        get_room_details_from_user(data);
+        get_room_details_from_user(data, size);
         return true;
     }
 
@@ -33,8 +32,8 @@ bool GameInitializer::create_rooms(GameData *data, int size) {
     return false;
 }
 
-bool GameInitializer::get_room_details_from_user(GameData *data) {
-    for(int room_num = 0; room_num < data->num_rooms; room_num++) {
+bool GameInitializer::get_room_details_from_user(GameData *data, int num_rooms) {
+    for(int room_num = 0; room_num < num_rooms; room_num++) {
         int params[NUM_ROOM_PARAMS];
         for(int param_num = 0; param_num < NUM_ROOM_PARAMS; param_num++) {
             std::cin >> params[param_num];
@@ -45,8 +44,7 @@ bool GameInitializer::get_room_details_from_user(GameData *data) {
 
 bool GameInitializer::create_creatures(GameData *data, int size) {
     if(size > 0) {
-        data->num_creatures = size;
-        get_creature_details_from_user(data);
+        get_creature_details_from_user(data, size);
         return true;
     }
 
@@ -54,8 +52,8 @@ bool GameInitializer::create_creatures(GameData *data, int size) {
     return false;
 }
 
-bool GameInitializer::get_creature_details_from_user(GameData *data) {
-    for(int creature_num = 0; creature_num < data->num_creatures; creature_num++) {
+bool GameInitializer::get_creature_details_from_user(GameData *data, int num_creatures) {
+    for(int creature_num = 0; creature_num < num_creatures; creature_num++) {
         int params[NUM_CREATURE_PARAMS];
         for(int param_num = 0; param_num < NUM_CREATURE_PARAMS; param_num++) {
             std::cin >> params[param_num];
