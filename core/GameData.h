@@ -10,15 +10,15 @@
 #define CSC_454_HW_1_GAMEDATA_H
 class GameData {
 public:
-    std::vector<Room*> rooms;
-    std::vector<Creature*> creatures;
-    PlayerCharacter* pc;
+    static PlayerCharacter* pc;
 
     GameData();
-    void cleanup();
+    static void cleanup();
 
-    std::vector<Creature*> get_creatures_in_room(int room);
-    Creature* find_creature(int id);
-    int find_creature_index(int creature_id);
+    static Creature* find_creature(int id);
+    static Room* get_room(int index);
+    static void add_room(Room* room);
+private:
+    static std::vector<Room*> rooms;
 };
 #endif //CSC_454_HW_1_GAMEDATA_H

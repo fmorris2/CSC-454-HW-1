@@ -38,7 +38,7 @@ bool GameInitializer::get_room_details_from_user(GameData *data, int num_rooms) 
         for(int param_num = 0; param_num < NUM_ROOM_PARAMS; param_num++) {
             std::cin >> params[param_num];
         }
-        data->rooms.push_back(new Room(room_num, params[0], params[1], params[2], params[3], params[4]));
+        data->add_room(new Room(room_num, params[0], params[1], params[2], params[3], params[4]));
     }
 }
 
@@ -62,7 +62,7 @@ bool GameInitializer::get_creature_details_from_user(GameData *data, int num_cre
         if(params[0] == (int)CreatureType::PC) {
             data->pc = (PlayerCharacter*)creature;
         }
-        data->creatures.push_back(creature);
+        data->get_room(creature->get_location())->add_creature(creature);
     }
 }
 
