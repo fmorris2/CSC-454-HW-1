@@ -13,18 +13,17 @@ public:
     Creature(int id, int location);
     Creature();
 
-    std::string get_happy_action();
-    std::string get_angry_action();
-
     void look(Room* room);
     void move(Room* current, Room* destination, int direction);
     void escape_room(Room* current);
     void start_action(bool is_happy_action);
     void drill_hole();
+
     virtual std::string get_type() = 0;
     virtual int get_incompatible_room_state() = 0;
     virtual void fix_room(Room* room);
 
+    //Getters & Setters
     int get_id();
     int get_location();
 

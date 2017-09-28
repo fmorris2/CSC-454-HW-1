@@ -73,7 +73,7 @@ void Creature::start_action(bool is_happy_action) {
     if(location != GameData::pc->get_location()) {
         return;
     }
-    
+
     int times = forced_action ? FORCED_ACTION_TIMES : 1;
     for(int i = 0; i < times; i++) {
         if(is_happy_action) {

@@ -31,18 +31,18 @@ public:
         LAST_STATE
     };
 
+    //Actual game logic
     void clean(Creature* creature_doing_cleaning);
     void dirty(Creature* creature_doing_dirtying);
     void handle_consequences_of_state_change(State old_state, State new_state);
     void handle_consequence_of_drill_hole();
 
+    //Helper methods
     bool is_full();
-
     void print_neighbors();
     void print_state();
     void print_creatures();
     void cleanup_resources();
-
     Creature* find_creature(int id);
     std::string get_direction_name(Direction direction);
     std::vector<int> get_available_neighbors();
